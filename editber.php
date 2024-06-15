@@ -12,7 +12,7 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 $action = isset($_GET['action']) ? $_GET['action'] : '' ;
-
+echo $action;
 if ($action == 'edit') {
   $id = $_GET['id'];
   $sql = "SELECT id_berita, judul, deskripsi, isi, tgl_terbit, id_penulis, id_kategori from berita where id_berita= '".$id."'";
@@ -41,13 +41,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $tglpublish = $_POST['tglpublish'];
   $penulis = $_POST['penulis'];
   $kategori = $_POST['kategori'];
- 
-    $sql = "update berita set judul = '$judul', deskripsi = '$deskripsi, isi = '$isi', id_penulis = '$penulis', id_kategori = '$kategori' where id_berita = '".$_POST['id_berita']."' ";
+  if ($_POST['id'] !== "") {
+    $sql = "update berita set judul = '$judul', deskripsi = '$deskripsi', isi = '$isi', tgl_terbit = '$tglpublish', id_penulis = '$penulis', id_kategori = '$kategori' where id_berita = '".$_POST['id']."' ";
     header("Location:/berita/koneksidb.php");
-    // echo "update ";
+    // echo $_POST;
+
+  }
+  $result = $conn->query($sql);
+
+
+  echo $judul;
+  echo $deskripsi;
+  echo $isi;
+  echo $tglpublish;
+  echo $penulis;
+  echo $kategori;
+
+
+  echo $_POST['id'];
+  
+
+  
+}
 echo "<br />";
 
-}
+
 
 $sql = "SELECT id_berita, judul, deskripsi, isi, tgl_terbit, id_penulis, id_kategori from berita";
 $result = $conn->query($sql);
@@ -55,7 +73,7 @@ $result = $conn->query($sql);
 $articles = $result->fetchAll(PDO::FETCH_ASSOC);
 
 	?>
-<form method="POST" action="/berita/inputb.php">
+<form method="POST" action="/berita/editber.php">
 <input type="hidden" name="id" value="<?php echo $article['id_berita'] ?>" />
   <label for="judul">Judul:</label><br>
   <input type="text" id="judul" name="judul" value="<?php echo $article['judul'] ?>"><br>
@@ -66,18 +84,18 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
   <label for="tglpublish">Tgl Publish:</label><br>
   <input type="date" id="tglpublish" name="tglpublish" value="<?php echo date('Y-m-d',strtotime($article["tgl_terbit"])) ?>"><br>
   <label for="penulis">Penulis</label><br>
-  <select name="penulis" value=""><?php echo $article['id_penulis'] ?>
-      <option value="<?php echo $article['id_penulis'] ?>">
+  <select name="penulis" value="<?php echo $article['id_penulis'] ?>">
+      <option value=""><?php echo $article['id_penulis'] ?>
         <?php
       
       $sql = "SELECT * FROM penulis";
       $data = $conn->query($sql);
       
       ?>
-      <?php foreach ($data as $row): ?>
-      <option value="<?= $row['id_penulis']?>">
-        <?= $row['nama'] ?>
-      </option>
+      <?php foreach ($data as $row): 
+        $selected = $row['id_penulis'] == $article["id_penulis"] ? "selected" : "";
+        ?>
+      <option value='<?= $selected = $row['id_penulis']?>' <?= $selected ?> ><?= $row['nama']?></option>
       <?php endforeach ?>
     </select>
       </br>
@@ -90,10 +108,10 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
       $data = $conn->query($sql);
       
       ?>
-      <?php foreach ($data as $row): ?>
-      <option value="<?= $row['id_kategori']?>">
-        <?= $row['nama_kat'] ?>
-      </option>
+      <?php foreach ($data as $row): 
+        $selected = $row['id_kategori'] == $article["id_kategori"] ? "selected" : "";
+        ?>
+      <option value='<?= $selected = $row['id_kategori']?>' <?= $selected ?> ><?= $row['nama_kat']?></option>
       <?php endforeach ?>
     </select>
   <input type="submit" value="simpan" />

@@ -63,7 +63,7 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
 	?>
 <form method="POST" action="/berita/editkat.php">
 <label for="judul">ID Kategori:</label><br>
-<input type="text" name="id_kategori" value="<?php echo $article['id_kategori'] ?>" /></br>
+<input type="text" name="id_kategori" value="<?php echo $article['id_kategori'] ?>" readonly/></br>
 <label for="deskripsi">Nama:</label><br>
   <input type="text" id="nama_kat" name="nama_kat" value="<?php echo $article['nama_kat'] ?>"><br>
   <input type="submit" value="simpan" />

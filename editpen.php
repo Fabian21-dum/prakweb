@@ -67,17 +67,17 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
 	?>
 <form method="POST" action="/berita/editpen.php">
   <label for="id">Id Penulis:</label><br>
-  <input type="text" name="id_penulis" value="<?php echo $article['id_penulis'] ?>" /></br>
+  <input type="text" name="id_penulis" value="<?php echo $article['id_penulis'] ?>" readonly/></br>
   <label for="nama">Nama:</label><br>
   <input type="text" name="nama" value="<?php echo $article['nama'] ?>" /></br>
   <label for="isi">isi:</label><br>
-  <input type="date" name="tgl_lahir"></input><br>
+  <input type="date" name="tgl_lahir" value="<?php echo date('Y-m-d',strtotime($article["tgl_lahir"])) ?>"></input><br>
   <label for="gender">Gender:</label><br>
   <select name="gender" id="gender" value="<?php echo $article['gender'] ?>">
-    <option value="L">Laki-Laki</option>
-    <option value="P">Perempuan</option>
-    <option value="O">Other</option>
-    <option value="X">XE/XER</option>
+  <option value="<?php echo $article['gender'] ?>"><?php echo $article['gender'] ?></option>
+    <option value="Laki-Laki">Laki-Laki</option>
+    <option value="Perempuan">Perempuan</option>
+    <option value="Other">Other</option>
     </select>
     <input type="submit" value="simpan" />
     <a href="/berita/penulis.php">kembali </a></b>
