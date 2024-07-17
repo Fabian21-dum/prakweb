@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(move_uploaded_file($tempname, $targetpath)){
       $sql = "insert into berita(judul, deskripsi, isi, tgl_terbit, images, id_penulis, id_kategori) values ('$judul','$deskripsi','$isi','$tglpublish', '$filename', '$penulis', '$kategori') ";
       if($result = $conn->query($sql)){
-      header("Location:./index.php");
+      header("Location:./main.php");
         // echo "input ";
 
       }else{
@@ -62,13 +62,13 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
 
                                         <label class="col-md-12 p-0 pb-1 fw-bold">Judul</label>
                                             <input type="text" name="judul" placeholder="Judul"
-                                                class="form-control p-0 border-0"> </div>
+                                                class="form-control p-0 border-0" required> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Deskripsi</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <textarea name="deskripsi" placeholder="Deskripsi"
-                                                class="form-control p-0 border-0"
+                                                class="form-control p-0 border-0" required
                                                ></textarea>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                                             <label class="col-md-12 p-0 pb-1 fw-bold">Isi</label>
                                             <div class="col-md-12 border-bottom p-0">
                                             <textarea name="isi" placeholder="Isi"
-                                                class="form-control p-0 border-0"></textarea>
+                                                class="form-control p-0 border-0" required></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="form-group mb-4">
                                         <h for="username" class="col-md-12 p-0 pb-1 fw-bold">Penulis</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                        <select name="penulis" id="select" class="form-select">
+                                        <select name="penulis" id="select" class="form-select" required>
                                         <option value="">
                                           <?php
                                             $sql = "SELECT * FROM penulis";
@@ -112,7 +112,7 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Kategori</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                        <select name="kategori" id="select" class="form-select">
+                                        <select name="kategori" id="select" class="form-select" required>
                                         <option value="">
                                           <?php
                                             $sql = "SELECT * FROM kategori";
@@ -132,7 +132,7 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                                             <label class="control-label pb-1 fw-bold">Image</label>
                                             <div class="controls">
                                             <input type="file" name="images"
-                                                class="form-control p-0 border-0"></input>
+                                                class="form-control p-0 border-0" required></input>
                                             </div>
                                         </div>
                                     </div>

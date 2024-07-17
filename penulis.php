@@ -21,10 +21,10 @@ if ($articles) {
                     <table class="table">
                     <theader>
                       <tr>
-                        <th> id </th>
+                        <th> ID Penulis </th>
                         <th> Nama </th>
-                        <th> tanggal lahir </th>
-                        <th> gender </th>
+                        <th> Tanggal Lahir </th>
+                        <th> Gender </th>
                         <th> Aksi </th>
                       </tr>
                     </theader>

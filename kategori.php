@@ -20,7 +20,7 @@ if ($articles) {
                     <table class="table">
                     <theader>
                       <tr>
-                        <th> id </th>
+                        <th> ID Kategori </th>
                         <th> Nama Kategori</th>
                         <th> Aksi </th>
                       </tr>

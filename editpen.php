@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $gender   = $_POST['gender'];
 
   if ($_POST['id_pen'] !== "") {
-    $sql = "update penulis set nama = '$nama', tgl_lahir = '$tgllahir', gender = '$gender' where id_penulis = '".$_POST['id_penulis']."' ";
+    $sql = "update penulis set id_penulis = '$id', nama = '$nama', tgl_lahir = '$tgllahir', gender = '$gender' where id_penulis = '".$_POST['id_pen']."' ";
     header("Location:./penulis.php");
     // echo "upd ";
 
@@ -66,16 +66,17 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                             <div class="card-body">
                                 <form method="POST" action="./editpen.php" class="form-horizontal form-material" >
                                     <div class="form-group mb-4">
+                                    <input type="hidden" name="id_pen" value="<?php echo $article['id_penulis'] ?>"/>
                                         <label class="col-md-12 p-0 pb-1 fw-bold">ID Penulis</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="text" name="id_penulis" placeholder="019"
-                                                class="form-control p-0 border-0" value="<?php echo $article['id_penulis'] ?>" readonly> </div>
+                                            <input type="text" name="id_penulis" placeholder="ID Penulis"
+                                                class="form-control p-0 border-0" value="<?php echo $article['id_penulis'] ?>" maxlength="3" required> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Nama Penulis</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" name="nama" placeholder="Chat"
-                                                class="form-control p-0 border-0" value="<?php echo $article['nama'] ?>">
+                                                class="form-control p-0 border-0" value="<?php echo $article['nama'] ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -91,7 +92,7 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Gender</label>
                                         <div class="col-md-12 border-bottom p-0 ">
-                                        <select name="gender" id="gender" class="form-select" value="<?php echo $article['gender'] ?>">
+                                        <select name="gender" id="gender" class="form-select" value="<?php echo $article['gender'] ?>" required>
                                         <option value="<?php echo $article['gender'] ?>"><?php echo $article['gender'] ?></option>
                                             <option value="L">Laki-Laki</option>
                                             <option value="P">Perempuan</option>

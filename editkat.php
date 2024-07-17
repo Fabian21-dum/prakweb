@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nama   = $_POST['nama_kat'];
 
   if ($_POST['id_kat'] !== "") {
-    $sql = "update kategori set nama_kat = '$nama' where id_kategori = '".$_POST['id_kategori']."' ";
+    $sql = "update kategori set id_kategori = '$id', nama_kat = '$nama' where id_kategori = '".$_POST['id_kat']."' ";
     header("Location:./kategori.php");
     // echo "upd ";
 
@@ -58,16 +58,17 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                             <div class="card-body">
                                 <form method="POST" action="./editkat.php" class="form-horizontal form-material" >
                                     <div class="form-group mb-4">
+                                    <input type="hidden" name="id_kat" value="<?php echo $article['id_kategori'] ?>"/>
                                         <label class="col-md-12 p-0 pb-1 fw-bold">ID Kategori</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" name="id_kategori" placeholder="MUS"
-                                                class="form-control p-0 border-0" value="<?php echo $article['id_kategori'] ?>" readonly> </div>
+                                                class="form-control p-0 border-0" value="<?php echo $article['id_kategori'] ?>" maxlength="3" required> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Nama kategori</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" name="nama_kat" placeholder="Music"
-                                                class="form-control p-0 border-0" value="<?php echo $article['nama_kat'] ?>">
+                                                class="form-control p-0 border-0" value="<?php echo $article['nama_kat'] ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">

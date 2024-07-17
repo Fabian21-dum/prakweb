@@ -35,13 +35,13 @@ $articles = $result->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="col-md-12 p-0 pb-1 fw-bold">ID Kategori</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" name="id_kategori" placeholder="Input disini"
-                                                class="form-control p-0 border-0"> </div>
+                                                class="form-control p-0 border-0" maxlength="3" required> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 pb-1 fw-bold">Nama kategori</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" name="nama_kat" placeholder="Input disini"
-                                                class="form-control p-0 border-0"
+                                                class="form-control p-0 border-0" required
                                                >
                                         </div>
                                     </div>

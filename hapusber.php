@@ -16,4 +16,4 @@ echo "<br />";
 $id = $_GET['id'];
 $sql = "delete from berita where id_berita = '".$id."'";
 $conn->query($sql);
-header("Location:./index.php");
+header("Location:./main.php");

@@ -1,4 +1,10 @@
 /* stylelint-disable @stylistic/selector-list-comma-newline-after */
+/* .fifty-chars {
+  width: 43ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} */
 
 .blog-header-logo {
   font-family: "Roboto Mono", Georgia, "Times New Roman", monospace/*rtl:Amiri, Georgia, "Times New Roman", serif*/;

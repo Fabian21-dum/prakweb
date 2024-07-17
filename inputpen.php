@@ -50,7 +50,7 @@ $today = $year . '-' . $month . '-' . $day;
                                         <label class="col-md-12 p-0 pb-1 fw-bold">ID Penulis</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" name="id_penulis" placeholder="ID Anda"
-                                                class="form-control p-0 border-0"> </div>
+                                                class="form-control p-0 border-0" maxlength="3" required> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Nama Penulis</label>
@@ -73,7 +73,7 @@ $today = $year . '-' . $month . '-' . $day;
                                     <div class="form-group mb-4">
                                         <label for="username" class="col-md-12 p-0 pb-1 fw-bold">Gender</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                        <select name="gender" id="gender" class="form-select">
+                                        <select name="gender" id="gender" class="form-select" required>
                                             <option value="L">Laki-Laki</option>
                                             <option value="P">Perempuan</option>
                                             <option value="O">Other</option>

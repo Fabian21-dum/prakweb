@@ -1,3 +1,19 @@
+<?php
+// require_once("koneksidb.php");
+$sql = "SELECT * from kategori";
+$hasil = $conn->query($sql);
+
+$kategori = $hasil->fetchAll(PDO::FETCH_ASSOC);
+
+if ($kategori) {
+
+    foreach ($kategori as $kat) {
+      ?>
+      
+      <?php
+    }
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -49,21 +65,26 @@
         <a class="link-secondary" href="#"></a>
       </div>
       <div class="col-4 text-center">
-        <a class="blog-header-logo text-body-emphasis text-decoration-none h1 " href="./main.php"><strong>ZVLL</strong></a>
+        <a class="blog-header-logo text-body-emphasis text-decoration-none h1 " href="./index.php"><strong>ZVLL</strong></a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-      <h6><a class=" text-body-emphasis text-decoration-none" href="./logout.php">View as a Viewer</a></h6>
-
+      <h6><a class="text-body-emphasis text-decoration-none" href="./login.php"><strong>Login as Admin</strong></a></h6>
       </div>
     </div>
   </header>
 
   <div class="nav-scroller py-1 mb-3 border-bottom ">
     <nav class="nav nav-underline justify-content-between">
-      <a class="nav-item nav-link link-body-emphasis" href="./penulis.php">Lihat Penulis</a>
-      <a class="nav-item nav-link link-body-emphasis" href="kategori.php">Lihat Kategori</a>
-      <a class="nav-item nav-link link-body-emphasis" href="main.php">Lihat Berita</a>
-      <a class="nav-item nav-link link-body-emphasis" href="inputber.php">Input Berita</a>
+        <?php
+if ($kategori) {
+
+    foreach ($kategori as $kat) {
+?>
+      <a class="nav-item nav-link link-body-emphasis" href="mainkat.php?action=kat&id_kat=<?php echo $kat['id_kategori']?>"><?php echo $kat['nama_kat']?></a>
+      <?php
+    }
+}
+?>
     </nav>
   </div>
 </div>
